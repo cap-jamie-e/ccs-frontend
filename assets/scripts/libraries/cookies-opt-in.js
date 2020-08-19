@@ -377,7 +377,7 @@ var docCookies = {
 
         var optInButton = document.createElement('button');
         optInButton.classList.add('govuk-!-font-size-18', 'govuk-!-font-weight-bold', 'govuk-button', 'gtm--accept-cookies-in-banner');
-        optInButton.innerHTML = "Accept cookies";
+        optInButton.innerHTML = "Accept all cookies";
         optInButton.addEventListener('click', optUserIn);
 
         var settingsButton = document.createElement('a');
