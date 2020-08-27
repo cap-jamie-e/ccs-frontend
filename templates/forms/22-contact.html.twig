@@ -91,7 +91,9 @@
 
                     <!-- form -->
                     {# For Twig global variables see config/packages/<environment>/twig.yaml #}
-                    <form class="govuk-!-width-three-quarters" action="{{ web_to_case_post_url }}" method="POST">
+                    {# display error messages #}
+                    <div class="error-messages"></div>
+                    <form class="govuk-!-width-three-quarters" id="ccs-contact-form" action="{{ web_to_case_post_url }}" method="POST">
 
                         {# Change these field types to hidden for Production #}
                         <input type="hidden" name="orgid" value="{{ web_to_case_orgid }}">
@@ -155,17 +157,23 @@
 
                         {# wrapper class for error states; `govuk-form-group--error`  #}
                         <div class="govuk-form-group --govuk-form-group--error">
-                            <label class="govuk-label" for="name">Name</label>
-                            {#<span id="full-name-error" class="govuk-error-message">#}
-                            {#Descriptive and helpful error message#}
-                            {#</span>#}
+                            <label class="govuk-label" for="name">
+                                Name
+                            </label>
+                            <span id="full-name-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span>
+                            </span>
                             {# input class for error states; `govuk-input--error`  #}
                             <input class="govuk-input --govuk-input--error" aria-describedby="full-name-error" id="name" maxlength="80" name="name" size="20" type="text"/>
                         </div>
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="email">
-                                Email </label>
-                            <input class="govuk-input" id="email" maxlength="80" name="email" size="20" type="email" required/>
+                                Email 
+                            </label>
+                            <span id="email-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span>
+                            </span>
+                            <input class="govuk-input --gov-input-error" aria-describedby="email-error" id="email" maxlength="80" name="email" size="20" type="email" required/>
                         </div>
 
 
@@ -180,31 +188,39 @@
                                     <div class="govuk-checkboxes__item">
                                         <input class="govuk-checkboxes__input" id="00Nb0000009IXEg" name="00Nb0000009IXEg" type="checkbox" value="1"/>
                                         <label class="govuk-label govuk-checkboxes__label" for="00Nb0000009IXEg">
-                                            Yes </label>
+                                            Yes 
+                                        </label>
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
                         <div class="govuk-form-group">
-                            <label class="govuk-label" for="phone"> Telephone
-                                number</label>
-                            <input class="govuk-input" id="phone" maxlength="40" name="phone" size="20" type="text" required/>
+                            <label class="govuk-label" for="phone"> 
+                                Telephone number
+                            </label>
+                            <span id="phone-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span>
+                            </span>
+                            <input class="govuk-input" aria-describedby="phone-error" id="phone" maxlength="40" name="phone" size="20" type="text" required autocomplete="tel"/>
                         </div>
 
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="company">
-                                Organisation </label>
+                                Organisation 
+                            </label>
                             <input class="govuk-input" id="company" maxlength="80" name="company" size="20" type="text"/>
                         </div>
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="00Nb0000009IXEs">
-                                Job title </label>
+                                Job title 
+                            </label>
                             <input class="govuk-input" id="00Nb0000009IXEs" maxlength="100" name="00Nb0000009IXEs" size="20" type="text"/>
                         </div>
                         <div class="govuk-form-group govuk-!-width-one-half">
                             <label class="govuk-label" for="post-code">
-                                Organisation post code </label>
+                                Organisation post code 
+                            </label>
                             <input class="govuk-input" id="post-code" maxlength="100" name="post-code" size="20" type="text"/>
                         </div>
 
@@ -241,11 +257,15 @@
 
                         <div class="govuk-form-group">
                             <label id="more-detail-label" class="govuk-label" for="more-detail">Can
-                                you provide more detail?</label>
+                                you provide more detail?
+                            </label>
                             <span id="more-detail-hint" class="govuk-hint">
-    Do not include personal or financial information, like your credit card details.
-  </span>
-                            <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint" required></textarea>
+                                Do not include personal or financial information, like your credit card details.
+                            </span>
+                            <span id="more-detail-error" class="govuk-error-message">
+                                <span class="govuk-visually-hidden">Error:</span>
+                            </span>
+                            <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint more-detail-error" required></textarea>
                         </div>
 
                         {# Catch-all field for additional Salesforce data #}
@@ -320,7 +340,7 @@
 
                                 }
                             }
-
+                            
                             dataCollectionFieldForSalesforce.value += fieldPostCode.name + ": " + fieldPostCode.value;
                             dataCollectionFieldForSalesforce.value += " " + fieldMoreDetail.name + ": " + fieldMoreDetail.value;
 
