@@ -345,51 +345,6 @@
                             dataCollectionFieldForSalesforce.value += " " + fieldMoreDetail.name + ": " + fieldMoreDetail.value;
 
                         }, false);
-
-
-                        /************* Validate form *************/
-
-                            function validateForm (form) {
-                                // add error messages here
-                                var errorMessages = [];
-
-                                // get form
-                                var form = document.getElementById(form);
-
-                                // get form fields
-                                var name = form.querySelector('#name');
-                                var email = form.querySelector('#email');
-                                var phone = form.querySelector('#phone');
-
-                                // find error messages in parent
-                                var errorElement = form.parentNode.querySelector('.error-messages');
-                                // target spans here
-
-
-                                // when user submits form
-                                form.addEventListener('submit', function(e) {
-                                    
-                                    if(name.value == '' || name.value == null) {
-                                        errorMessages.push('<p>Name cannot be blank</p>');
-                                    }
-
-                                    // if there are any errors prevent submission of form and render error messages
-                                    if(errorMessages.length > 0) {
-                                        e.preventDefault();
-                                        errorElement.innerHTML = errorMessages.join('');
-                                        // reset errorMessages to allow submission
-                                        errorMessages = [];
-                                    }
-                                });
-
-                            }
-
-                            validateForm('ccs-contact-form');
-                            // add validation for other fields
-                            // add error messages to span
-                            // add error classes to form fields i.e gov-uk-error
-                            // focus on error messages box when submit
-
                     </script>
                     
 
